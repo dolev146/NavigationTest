@@ -22,6 +22,11 @@ fun Navigation() {
         composable(route = Screen.MainScreen.route) {
             MainScreen(navController = navCotroller)
         }
+        // if we want the name to be optional we can use navArgument with nullable = true
+        // we specify the route with ? to make it optional and we can use it in the composable
+        // ?name={name}
+        // if we want more than 1 parameter
+        // /{name}/{age}
         composable(route = Screen.DetailScreen.route + "/{name}" , arguments = listOf(
             navArgument("name") {
                 type = NavType.StringType
