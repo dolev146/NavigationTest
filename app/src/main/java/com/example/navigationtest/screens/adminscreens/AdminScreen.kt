@@ -15,26 +15,35 @@ import androidx.navigation.NavController
 import com.example.navigationtest.Screen
 
 @Composable
-fun AddClothing(navController: NavController) {
-    LazyColumn(content = {
+fun AdminScreen(navController: NavController) {
+    LazyColumn(content =
+    {
         item {
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround,
-
+                verticalArrangement = Arrangement.SpaceAround
             ) {
-                Text(text = "Add Clothing")
+                Text(text ="Admin Screen")
                 // insert your screen here
 
-                Button(onClick = { navController.navigate(Screen.AdminScreen.route) }) {
-                    Text(text = "Go to Admin Screen")
+
+
+
+
+                Button(onClick = {
+                    navController.navigate(Screen.AddClothing.route)
+                }) {
+                    Text(text = "Add Clothing")
                 }
 
 
             }
+
         }
     })
+
 }

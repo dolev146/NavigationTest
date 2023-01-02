@@ -90,41 +90,54 @@ fun DrawerTopBar(
         mutableStateOf(false)
     }
 
-
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     isAdminState = true
     var menuContent = mutableListOf(
-
-        MenuItem(
-            id = "main screen",
-            title = "Main Screen",
-            contentDescription = "Go to Search screen",
-            icon = Icons.Default.Search
-        ),
-
-        )
-
-    if (isAdminState) {
-
-        menuContent.add(
-            MenuItem(
-                id = "add clothes",
-                title = "add Clothes",
-                contentDescription = "Go to add clothes screen",
-                icon = Icons.Default.MoreVert
-            )
-        )
-
-
-
-        menuContent.add(
             MenuItem(
                 id = "logout",
                 title = "Logout",
                 contentDescription = "Go to Logout screen",
                 icon = Icons.Default.ExitToApp
+            ),
+        )
+
+
+    if (isAdminState) {
+        menuContent.add(
+            MenuItem(
+                id = "admin screen",
+                title = "Admin Screen",
+                contentDescription = "Go to admin screen",
+                icon = Icons.Default.MoreVert
+            )
+        )
+
+        menuContent.add(
+            MenuItem(
+                id = "choose design",
+                title = "Choose Design",
+                contentDescription = "Go to Chose Design screen",
+                icon = Icons.Default.Person
+            )
+        )
+
+        menuContent.add(
+            MenuItem(
+                id = "exist design",
+                title = "Choose Exist Design",
+                contentDescription = "Go to Chose Design screen",
+                icon = Icons.Default.Person
+            )
+        )
+
+        menuContent.add(
+            MenuItem(
+                id = "make design",
+                title = "Make Design",
+                contentDescription = "Go to Make Design screen",
+                icon = Icons.Default.Person
             )
         )
 
@@ -133,20 +146,39 @@ fun DrawerTopBar(
         // this is user menu
         menuContent.add(
             MenuItem(
-                id = "my profile",
-                title = "My Profile",
-                contentDescription = "Go to User profile screen",
+                id = "choose design",
+                title = "Choose Design",
+                contentDescription = "Go to Chose Design screen",
                 icon = Icons.Default.Person
             )
         )
+
         menuContent.add(
             MenuItem(
-                id = "logout",
-                title = "Logout",
-                contentDescription = "Go to Logout screen",
-                icon = Icons.Default.ExitToApp
+                id = "exist design",
+                title = "Choose Exist Design",
+                contentDescription = "Go to Chose Design screen",
+                icon = Icons.Default.Person
             )
         )
+
+        menuContent.add(
+            MenuItem(
+                id = "make design",
+                title = "Make Design",
+                contentDescription = "Go to Make Design screen",
+                icon = Icons.Default.Person
+            )
+        )
+
+//        menuContent.add(
+//            MenuItem(
+//                id = "logout",
+//                title = "Logout",
+//                contentDescription = "Go to Logout screen",
+//                icon = Icons.Default.ExitToApp
+//            )
+//        )
     }
 
 
@@ -165,13 +197,21 @@ fun DrawerTopBar(
             DrawerHeader()
             DrawerBody(items = menuContent, onItemClick = {
                 when (it.id) {
-                    "add clothes" -> {
-                        navController.navigate(Screen.DummyScreen.route)
+                    "logout" -> {
+                        navController.navigate(Screen.LoginScreen.route)
                     }
-                    "main screen" ->{
-                        navController.navigate(Screen.MainScreen.route)
+                    "admin screen" ->{
+                        navController.navigate(Screen.AdminScreen.route)
                     }
-
+                    "choose design" ->{
+                        navController.navigate(Screen.ChoseDesignScreen.route)
+                    }
+                    "exist design" ->{
+                        navController.navigate(Screen.ExistingDesignScreen.route)
+                    }
+                    "make design" ->{
+                        navController.navigate(Screen.MakeDesignScreen.route)
+                    }
                 }
             })
 
@@ -182,3 +222,21 @@ fun DrawerTopBar(
 }
 
 
+
+
+
+
+// not relevant
+
+//        MenuItem(
+//            id = "login screen",
+//            title = "Login Screen",
+//            contentDescription = "Go to Login",
+//            icon = Icons.Default.Person
+//        ),
+//        MenuItem(
+//            id = "register screen",
+//            title = "Register Screen",
+//            contentDescription = "Go to Register",
+//            icon = Icons.Default.Person
+//        ),

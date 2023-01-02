@@ -1,55 +1,61 @@
 package com.example.navigationtest
 
 import androidx.compose.runtime.*
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.example.navigationtest.screens.DetailScreen
-import com.example.navigationtest.screens.DummyScreen
-import com.example.navigationtest.screens.MainScreen
+import com.example.navigationtest.screens.LoginScreen
 import com.example.navigationtest.screens.NavDrawer.DrawerTopBar
+import com.example.navigationtest.screens.RegisterScreen
+import com.example.navigationtest.screens.adminscreens.AddClothing
+import com.example.navigationtest.screens.adminscreens.AdminScreen
+import com.example.navigationtest.screens.choose_design_screen.ChooseDesignScreen
+import com.example.navigationtest.screens.exsisting_design_screen.ExistingDesignScreen
+import com.example.navigationtest.screens.making_design_screen.MakingDesignScreen
 
 @Composable
 fun Navigation() {
     val navCotroller = rememberNavController()
-    NavHost(navController = navCotroller, startDestination = Screen.MainScreen.route) {
-        composable(route = Screen.MainScreen.route) {
-            DrawerTopBar(navController = navCotroller, screen =
-            {
-                MainScreen(navController = navCotroller)
+    NavHost(navController = navCotroller, startDestination = Screen.LoginScreen.route) {
+
+        composable(route = Screen.LoginScreen.route) {
+            LoginScreen(navController = navCotroller)
+        }
+
+        composable(route = Screen.RegisterScreen.route) {
+            RegisterScreen(navController = navCotroller)
+        }
+
+        composable(route = Screen.ChoseDesignScreen.route) {
+            DrawerTopBar(navController = navCotroller, screen = { navController ->
+                ChooseDesignScreen(navController = navCotroller)
             })
         }
 
-        // generate a dummy screen route and DummyScreen
-        composable(route = Screen.DummyScreen.route) {
-            DrawerTopBar(navController = navCotroller, screen =
-            {
-                DummyScreen(navController = navCotroller)
+        composable(route = Screen.ExistingDesignScreen.route) {
+            DrawerTopBar(navController = navCotroller, screen = { navController ->
+                ExistingDesignScreen(navController = navCotroller)
             })
+        }
 
+        // make adminscreen composable
+        composable(route = Screen.AdminScreen.route) {
+            DrawerTopBar(navController = navCotroller, screen = { navController ->
+                AdminScreen(navController = navCotroller)
+            })
+        }
+
+        composable(route = Screen.AddClothing.route) {
+            AddClothing(navController = navCotroller)
+        }
+
+        composable(route = Screen.MakeDesignScreen.route) {
+            DrawerTopBar(navController = navCotroller, screen = { navController ->
+                MakingDesignScreen(navController = navCotroller)
+            })
         }
 
 
-
-
-
-        // if we want the name to be optional we can use navArgument with nullable = true
-        // we specify the route with ? to make it optional and we can use it in the composable
-        // ?name={name}
-        // if we want more than 1 parameter
-        // /{name}/{age}
-        composable(route = Screen.DetailScreen.route + "/{name}" , arguments = listOf(
-            navArgument("name") {
-                type = NavType.StringType
-                defaultValue = "Yaakov"
-                nullable = true
-            }
-        )
-        ){entry ->
-            DetailScreen(name = entry.arguments?.getString("name"))
-        }
     }
 }
 
